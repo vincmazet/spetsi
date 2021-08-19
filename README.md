@@ -1,5 +1,7 @@
 # SPETSI : Simulations Pédagogiques En Traitement du SIgnal
 
+**➡️ [🌠 Animations](index.html)**
+
 ## Description
 
 Ces démonstrations et animations sont des programmes Javascript qui illustrent des concepts du traitement du signal et des communications numériques.
