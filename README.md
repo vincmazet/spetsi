@@ -19,7 +19,7 @@ Elles ont fait l'objet d'une publication dans :
 
 Ces démonstrations ont été testées sur PC avec Ubuntu et les navigateurs Chrome et Firefox.
 Vous pouvez télécharger et modifier le code, sous réserve de vérifier les conditions de la licence.
-Une page d'aide (`sandbox.html`) est disponible.
+Une [page d'aide](https://vincmazet.github.io/spetsi/sandbox.html) est disponible.
 
 
 ## Auteurs
