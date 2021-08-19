@@ -10,7 +10,7 @@ Les codes sont librement accessibles et nous encourageons l'amélioration de ces
 
 Elles ont fait l'objet d'une publication dans :
 > V. Mazet, « [Simulations pédagogiques en traitement du signal avec JavaScript](https://icube-publis.unistra.fr/5-Maze17) »,
-> GRETSI 2017 5-8 september 2017, Juan-les-Pins, France.
+> GRETSI 2017 5-8 septembre 2017, Juan-les-Pins, France.
 
 
 ## Aide
