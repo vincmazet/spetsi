@@ -1,6 +1,6 @@
 # SPETSI : Simulations Pédagogiques En Traitement du SIgnal
 
-**➡️ [🌠 Animations](index.html)**
+**➡️ [🌠 Animations](https://vincmazet.github.io/spetsi/)**
 
 ## Description
 
