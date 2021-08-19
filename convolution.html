@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Convolution de deux signaux en temps discret</title>
+  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="vincent mazet, icube, lsiit, inverse problems, Bayesian approach, sparse spike train restoration, baseline estimation, sparse spike train deconvolution, simulation of positive normal variables, spectroscopy, astronomy" />
+  <link rel="stylesheet" href="css/knacss.css" media="all">
+  <link rel="stylesheet" href="css/spetsi.css" media="all">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="website">
+
+<!-- Header *************************************************************** -->
+
+<header>
+
+<h1>Convolution de deux signaux en temps discret</h1>
+
+</header>
+
+<!-- Description ********************************************************** -->
+
+<section>
+
+<p>
+En traitement du signal, la <i>convolution</i> équivaut à un filtrage :
+la sortie d'un filtre \(y\) correspond à la convolution de l'entrée \(x\) avec la réponse impulsionnelle \(h\) du filtre.
+</p>
+
+<p>
+Le <i>produit de convolution</i> est l'opération mathématique qui permet de calculer la convolution de deux signaux \(x\) et \(h\).
+Il est noté \(*\).
+Dans le cas de signaux discrets, le produit de convolution de \(x[n]\) et \(h[n]\) est défini par :
+$$y[n] = (x*h)[n] = \sum_{m=-\infty}^{\infty} x[n-m] h[m]$$
+</p>
+
+<p>
+Simulez le produit de convolution entre \(x[n]\) et \(h[n]\) en choisissant dans les listes déroulantes ou en cliquant sur les signaux.
+</p>
+
+</section>
+
+<!-- Animation ************************************************************ -->
+
+<section>
+<div id='convolution' class='spetsi'></div>
+</section>
+
+<!-- End ****************************************************************** -->
+
+<section>
+<p><a href="index.html#licence">&copy; Vincent Mazet + Frank Schorr, 2015</a>.</p>
+</section>
+
+<!-- End ****************************************************************** -->
+
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+<script src="js/spetsi.js" type="text/javascript"></script>
+<script src="js/convolution.js" type="text/javascript"></script>
+
+</body>
+</html>

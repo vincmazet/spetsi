@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Signal sinusoïdal</title>
+  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="vincent mazet, icube, lsiit, inverse problems, Bayesian approach, sparse spike train restoration, baseline estimation, sparse spike train deconvolution, simulation of positive normal variables, spectroscopy, astronomy" />
+  <link rel="stylesheet" href="css/knacss.css" media="all">
+  <link rel="stylesheet" href="css/spetsi.css" media="all">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="website">
+
+<!-- Header *************************************************************** -->
+
+<header>
+
+<h1>Signal sinusoïdal</h1>
+
+</header>
+
+<!-- Description ********************************************************** -->
+
+<section>
+
+<p>
+Un signal sinusoïdal a pour expression :
+$$x(t) = m + a \sin(2 \pi f t + \varphi)$$
+où \(m\) est la moyenne (ou <i>offset</i>), \(a\) est l'amplitude, \(f\) la fréquence et \(\varphi\) la phase.
+</p>
+
+<p>
+Visuellement, les modifications de \(m\) et \(\varphi\) se traduisent respectivement par un déplacement vertical et horizontal ;
+et les modifications de \(a\) et \(f\) se traduisent respectivement par une contraction (ou à l'inverse une dilatation) verticale et horizontale.
+</p>
+
+<p>
+L'animation ci-dessous permet de modifier les valeurs de ces trois paramètres
+pour observer l'influence sur le signal sinusoïdal.
+La fréquence est définie ici sans unité&nbsp;; mais elle est est hertz si l'unité de temps est la seconde.
+Chaque division horizontale correspond à une unité de temps.
+</p>
+
+</section>
+
+<!-- Animation ************************************************************ -->
+
+<section>
+<div id='sinus' class='spetsi'></div>
+</section>
+
+<!-- End ****************************************************************** -->
+
+<section>
+<p><a href="index.html#licence">&copy; Vincent Mazet, 2015</a>.</p>
+</section>
+
+<!-- End ****************************************************************** -->
+
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+<script src="js/spetsi.js" type="text/javascript"></script>
+</script><script src="js/sinus.js" type="text/javascript"></script>
+
+</body>
+</html>

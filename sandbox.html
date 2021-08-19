@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bac à sable</title>
+  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="vincent mazet, icube, lsiit, inverse problems, Bayesian approach, sparse spike train restoration, baseline estimation, sparse spike train deconvolution, simulation of positive normal variables, spectroscopy, astronomy" />
+  <link rel="stylesheet" href="css/knacss.css" media="all">
+  <link rel="stylesheet" href="css/spetsi.css" media="all">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="website">
+
+<!-- Header *************************************************************** -->
+
+<header>
+
+<h1>Bac à sable</h1>
+<p>spetsi.js : Simulations Pédagogiques en Traitement du SIgnal</p>
+
+</header>
+
+<!-------------------------------------------------------------------->
+
+<section>
+<h3>MathJax</h3>
+Les symboles et équations mathématiques sont écrits avec <a href="https://www.mathjax.org/">MathJax</a>,
+qui permet d'écrire du code LaTeX dans une page web.
+Par exemple, \(\sin(t)+\delta(t)\) s'écrit <code>\(\sin(t)+\delta(t)\)</code>.
+Notez que la fonte mathématique peut être utilisée à l'aide de la commande
+<code>&lt;span style="font-family:MJX_Math;"&gt;x&lt;/span&gt;</code>.
+</section>
+
+<!-------------------------------------------------------------------->
+
+<section>
+<h3>Couleur et épaisseurs</h3>
+<p>Lignes des couleurs des base.</p>
+<div id='sandbox1' class='spetsi'></div>
+</section>
+
+<!-------------------------------------------------------------------->
+
+<section>
+<h3>Étiquettes</h3>
+<p>Possibilité de modifier le texte, la position, la couleur et l'alignement.</p>
+<p>
+On peut aussi écrire en LaTeX, à l'aide de MathJax :
+le code <code>\\(e^{-j2\pi f t}\\)</code> permet d'obtenir \(e^{-j2\pi f t}\)
+(notez que, contrairement au texte dans un code HTML, il faut ici doubler les anti barres obliques).
+</p>
+<p>
+Modifier la taille est possible a posteriori (c'est-à-dire après la création du contrôle).
+Dans ce cas, il faut repositionner le Label.
+</p>
+<div id='sandbox2' class='spetsi'></div>
+</section>
+
+<!-------------------------------------------------------------------->
+
+<section>
+<h3>Barre de défilement</h3>
+<p>Contrôlable avec la souris et les flèches du clavier.</p>
+<div id='sandbox3' class='spetsi'></div>
+</section>
+
+<!-------------------------------------------------------------------->
+
+<section>
+<h3>Liste déroulante</h3>
+<p>Contrôlable avec la souris et les flèches du clavier.</p>
+<div id='sandbox4' class='spetsi'></div>
+</section>
+
+<!-------------------------------------------------------------------->
+
+<section>
+<h3>Bouton</h3>
+<div id='sandbox5' class='spetsi'></div>
+<p>Notez le caractère &#10005; (<code>&amp;#10005;</code>) qu'on peut appeler avec la variable <code>symbClear</code> et qui permet de représenter un élément à supprimer.</p>
+<p>Dans le cas d'un unique contrôle, le code pour appeler une fonction est :</p>
+<pre>
+  <code>
+  var btn = Button(..., foo);  // Contrôle
+  foo();                       // Appel de la fonction en dehors du contrôle
+
+  // Évènement
+  function foo()
+  {
+    // Code
+  }
+  </code>
+</pre>
+<p>On peut également gérer des listes de contrôles et leur fonction associée :</p>
+<div id='sandbox9' class='spetsi'></div>
+<p>Dans ce cas, nous avons utilisé des closures. Le code est :</p>
+<pre>
+  <code>
+  var btn[i] = Button(..., foo(i));  // Contrôle
+
+  // Évènement
+  function foo(i)
+  {
+    return function()
+    {
+      // Code
+    }
+  }
+  </code>
+</pre>
+<p>Une alternative aurait été d'utiliser des objets.</p>
+</section>
+
+<!-------------------------------------------------------------------->
+
+<section>
+<h3>Graphe de fonction</h3>
+<p>L'objet Graph permet de représenter des signaux.</p>
+<p>On peut définir ses valeurs extrêmes en x et en y, et afficher (ou non) un cadre, une grille ou les axes :</p>
+<div id='sandbox6' class='spetsi'></div>
+
+<p>L'affichage d'un signal ne supprime pas le signal précédent. Il faut donc effacer le graphe si nécessaire.</p>
+<div id='sandbox7' class='spetsi'></div>
+</section>
+
+<p>Un graphe peut interargir avec la souris.</p>
+<div id='sandbox8' class='spetsi'></div>
+</section>
+
+<!-------------------------------------------------------------------->
+
+<section>
+<h3>Fonctions mathématiques</h3>
+
+<p>Liste de progression arithmétique :</p>
+<ul>
+  <li><code>n = range(5)</code>           <span id="range1"></span></li>
+  <li><code>n = range(5, 10)</code>       <span id="range2"></span></li>
+  <li><code>n = range(1, 2, 0.2)</code>   <span id="range3"></span></li>
+  <li><code>n = range(+2, -2)</code>      <span id="range4"></span></li>
+  <li><code>n = range(10, 8, -0.5)</code> <span id="range5"></span></li>
+  <li><code>n = range(10, 10)</code>      <span id="range6"></span></li>
+  <li><code>n = range(1, 10, -1)</code>   <span id="range7"></span></li>
+</ul>
+
+</section>
+
+<!-------------------------------------------------------------------->
+
+<section>
+<h3>Écran HiDPI</h3>
+
+<p>
+  Rapport de taille des pixels sur le périphérique actuel :
+  <code>window.devicePixelRatio = <span id="pixelratio"></span></code>.
+</p>
+
+<div id='sandbox10' class='spetsi'></div>
+
+<p id="console10"></p>
+
+</section>
+
+<!-------------------------------------------------------------------->
+
+</section>
+<p><a href="index.html#licence">&copy; Vincent Mazet, 2015-2016</a>.</p>
+</section>
+
+<!-- SCRIPTS -->
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script src="js/spetsi.js" type="text/javascript"></script>
+<script src="js/sandbox.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+  range1.innerHTML = range(5);
+  range2.innerHTML = range(5, 10);
+  range3.innerHTML = range(1, 2, 0.2);
+  range4.innerHTML = range(+2, -2);
+  range5.innerHTML = range(10, 8, -0.5);
+  range6.innerHTML = range(10, 10);
+  range6.innerHTML = range(1, 10, -1);
+  pixelratio.innerHTML = window.devicePixelRatio;
+</script>
+
+</body>
+</html>

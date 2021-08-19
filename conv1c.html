@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Illustration du produit de convolution en temps continu</title>
+  <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="vincent mazet, icube, lsiit, inverse problems, Bayesian approach, sparse spike train restoration, baseline estimation, sparse spike train deconvolution, simulation of positive normal variables, spectroscopy, astronomy" />
+  <link rel="stylesheet" href="css/knacss.css" media="all">
+  <link rel="stylesheet" href="css/spetsi.css" media="all">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="website">
+
+<!-- Header *************************************************************** -->
+
+<header>
+
+<h1>Illustration du produit de convolution en temps continu</h1>
+
+</header>
+
+<!-- Description ********************************************************** -->
+
+<section>
+
+<p>
+Le produit de convolution de deux signaux \(x(t)\) et \(h(t)\) est défini par l'équation :
+$$y(t) = (x*h)(t) = \int_{-\infty}^{\infty} x(\tau) h(t-\tau) d\tau$$
+Comment est calculée cette intégrale ?
+</p>
+
+<p>
+Les deux premiers graphiques ci-dessous représentent un exemple de signal \(x(t)\) (en bleu) et un exemple de signal \(h(t)\) (en rouge).
+</p>
+
+<p>
+La première opération effectuée lors du calcul d'une convolution est le renversement et le décalage temporel d'un des deux signaux (ici nous avons choisi \(h(t)\)).
+La valeur du décalage \(t\) est modifiable à l'aide de la souris (ou du doigt).
+</p>
+
+<p>
+Ensuite, les signaux \(x(\tau)\) et \(h(t-\tau)\) sont multipliés entre eux et l'aire obtenue (représentée par la surface verte sur le quatrième graphe) correspond à \(y(t)\).
+En faisant glisser \(t\), on obtient le signal \(y\) en entier.
+</p>
+
+</section>
+
+<!-- Animation ************************************************************ -->
+
+<section>
+<div id='conv1c' class='spetsi'></div>
+</section>
+
+<!-- End ****************************************************************** -->
+
+<section>
+<p>Inspiration : <i><a href="http://pages.jh.edu/~signals/convolve/">The Joy of Convolution</a></i>.</p>
+<p><a href="index.html#licence">&copy; Vincent Mazet, 2015</a>.</p>
+</section>
+
+<!-- End ****************************************************************** -->
+
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+<script src="js/spetsi.js" type="text/javascript"></script>
+<script src="js/conv1c.js" type="text/javascript"></script>
+
+</body>
+</html>
