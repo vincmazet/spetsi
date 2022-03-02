@@ -6,7 +6,7 @@ var div, gbs, gbe, gfs, gfe;
 var gw = 200;       // Côté du diagramme de l'oeil
 var sep = 15;       // Séparation entre les deux graphes
 var K = 4;          // Nombre de symboles sur le signal = rapport entre les largeurs des deux graphes
-var T = 1;          // Durée d'un signal
+var d = 1;          // Durée d'un signal
 var N = 16;          // Nombre de points dans le diagramme de l'oeil
 var x = [];         // Valeur du signal
 
@@ -18,44 +18,44 @@ function init()
 
     // Graphe d'arrière-plan du signal
     gbs = Graph(div, 0, 0, K*gw, gw);
-    gbs.xlim = [0, K*T];
-    gbs.ylim = [-T/2, T/2];
-    gbs.grid(T/5, T/5);
+    gbs.xlim = [0, K*d];
+    gbs.ylim = [-d/2, d/2];
+    gbs.grid(d/5, d/5);
     gbs.box();
     gbs.axes();
-    gbs.plot([T, T],[-T/2, T/2]);
-    gbs.plot([2*T, 2*T],[-T/2, T/2]);
-    gbs.plot([3*T, 3*T],[-T/2, T/2]);
+    gbs.plot([d, d],[-d/2, d/2]);
+    gbs.plot([2*d, 2*d],[-d/2, d/2]);
+    gbs.plot([3*d, 3*d],[-d/2, d/2]);
     
     // Graphe d'arrière-plan du diagramme de l'oeil
     gbe = Graph(div, gw*1.5, gw+2*sep, gw, gw);
-    gbe.xlim = [-T/2,  T/2];
-    gbe.ylim = [-T/2, T/2];
-    gbe.grid(T/5, T/5);
+    gbe.xlim = [-d/2, d/2];
+    gbe.ylim = [-d/2, d/2];
+    gbe.grid(d/5, d/5);
     gbe.box();
     gbe.axes();
     
     // Graphe d'avant-plan du signal
     gfs = Graph(div, 0, 0, K*gw, gw);
-    gfs.xlim = [0, K*T];
-    gfs.ylim = [-T/2, T/2];
+    gfs.xlim = [0, K*d];
+    gfs.ylim = [-d/2, d/2];
     gfs.lineWidth = 2;
     gfs.mouseDrag(mousemove);
     
     // Graphe d'avant-plan du diagramme de l'oeil
     gfe = Graph(div, gw*1.5, gw+2*sep, gw, gw);
-    gfe.xlim = [-T/2,  T/2];
-    gfe.ylim = [-T/2, T/2];
+    gfe.xlim = [-d/2, d/2];
+    gfe.ylim = [-d/2, d/2];
     gfe.lineWidth = 2;
     
     // Etiquettes
     Label(div, '\\(0\\)',        0, gw, 't', color[1]);
-    Label(div, '\\(T\\)',    gw- 5, gw, 't', color[1]);
-    Label(div, '\\(2T\\)', 2*gw-10, gw, 't', color[1]);
-    Label(div, '\\(3T\\)', 3*gw-10, gw, 't', color[1]);
-    Label(div, '\\(4T\\)', 4*gw-20, gw, 't', color[1]);
+    Label(div, '\\(d\\)',    gw- 5, gw, 't', color[1]);
+    Label(div, '\\(2d\\)', 2*gw-10, gw, 't', color[1]);
+    Label(div, '\\(3d\\)', 3*gw-10, gw, 't', color[1]);
+    Label(div, '\\(4d\\)', 4*gw-20, gw, 't', color[1]);
     Label(div, '\\(0\\)',  gw*1.5+ 0, 2*gw+2*sep, 't', color[1]);
-    Label(div, '\\(T\\)',  gw*2.5-10, 2*gw+2*sep, 't', color[1]);
+    Label(div, '\\(d\\)',  gw*2.5-10, 2*gw+2*sep, 't', color[1]);
  
     // Définit et affiche le signal
     initsignal(0);
@@ -82,7 +82,7 @@ function initsignal(s)
 // Mouvement de la souris : récupère l'ordonnée du pointeur pour définir l'ordonnée du signal
 function mousemove(xx, yy)
 {
-    var n = Math.round(xx/(T/N));       // Indice du tableau
+    var n = Math.round(xx/(d/N));       // Indice du tableau
     x[n] = yy;                          // Valeur du signal
     draw();                             // Mise à jour de l'affichage
 }
