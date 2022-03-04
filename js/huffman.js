@@ -221,12 +221,16 @@ function updateGUI(h)
     // Dimension du div
     pos = cW + sW + pW + Math.max(M-1,3)*W;
     div.style.width = pos.toString() + 'px';
-    pos = bdh + sep + M*H;
+    pos = bdh*3/2 + 2*sep + M*H;
     div.style.height = pos.toString() + 'px';
 
     // Positionnement du texte
-    pos = div.offsetWidth - lblProba.offsetWidth - bdw - 2*sep;
+    pos = div.offsetWidth - lblProba.offsetWidth - bdw - 3*sep;
     txtProba.style.width = pos.toString() + 'px';
+
+    // Positionnement de l'alerte
+    pos = div.offsetWidth - bdw - 1.5*sep;
+    lblW.style.left = pos.toString() + 'px';
 
     // Positionnement du bouton
     pos = div.offsetWidth - bdw;
@@ -247,6 +251,36 @@ function updateGUI(h)
     ctx.strokeStyle = color[0];
     ctx.fillStyle = color[0];
     ctx.lineWidth = 1.5;
+
+    // Somme des probabilités
+    S = 0;
+    for(m=0; m<=h.length; m++)
+    {
+        S = S + h.probas[m];
+    }
+    S = Math.round(S*1000)/1000;
+
+    // Alerte si la somme des probabilité est différente de 1
+    if (S!=1)
+    {
+      lblW.innerHTML = "⚠️";
+      Warning = 1;
+    }
+    else
+    {
+      lblW.innerHTML = "";
+      Warning = 0;
+    }
+
+    // Longueur moyenne
+    Lm = 0;
+    for(m=0; m<=h.length; m++)
+    {
+        Lm = Lm + h.probas[m] * h.code[m].length;
+    }
+    Lm = Lm/S;
+    Lm = Math.round(Lm*100)/100
+    lblLm.innerHTML = 'Longueur moyenne : ' + Lm;
 
     // Met à jour les étiquettes existantes
     for(m=0; m<Math.min(M,N); m++)
@@ -271,17 +305,17 @@ function updateGUI(h)
     {
         // Codes
         lblc.push( Label(div, h.code[m], 0, 0) );
-        pos = (H-lblc[m].offsetHeight) / 2 + bdh + sep + m*H
+        pos = (H-lblc[m].offsetHeight) / 2 + bdh*3/2 + 2*sep + m*H;
         lblc[m].style.top = pos.toString() + 'px';
 
         // Symboles
         lbls.push( Label(div, '\\(S_{' + (m+1) + '}\\)', cW, 0) );
-        pos = (H-lbls[m].offsetHeight) / 2 + bdh + sep + m*H
+        pos = (H-lbls[m].offsetHeight) / 2 + bdh*3/2 + 2*sep + m*H;
         lbls[m].style.top = pos.toString() + 'px';
 
         // Probabilités
         lblp.push( Label(div, h.probas[m], cW+sW, 0) );
-        pos = (H-lblp[m].offsetHeight) / 2 + bdh + sep + m*H
+        pos = (H-lblp[m].offsetHeight) / 2 + bdh*3/2 + 2*sep + m*H;
         lblp[m].style.top = pos.toString() + 'px';
     }
 }
@@ -371,8 +405,14 @@ function init()
     // Bouton d'affichage
     btnDraw = Button(div, 'Calculer le code', 0, 0, bdw, bdh, '', run);
 
+    // Étiquette de longueur moyenne
+    lblLm = Label(div, 'Longueur moyenne :', 0, bdh*3/2+sep, 'm');
+
+    // Étiquette d'alerte moyenne
+    lblW = Label(div, '⚠️', 0, bdh/2, 'm');
+
     // Canvas
-    ctx = Graph(div, cW + sW + pW, bdh+sep, 1, 1);
+    ctx = Graph(div, cW + sW + pW, bdh*3/2+2*sep, 1, 1);
 
     // Dessin du canvas initial
     run();
