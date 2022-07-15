@@ -10,6 +10,8 @@ Elles sont accessibles librement, rapidement et sans aucune manipulation, à con
 Le code `js/spetsi.js` est disponible pour aider à la conception de ce type de simulations.
 Les codes sont librement accessibles et nous encourageons l'amélioration de ces démonstrations et le développement de nouvelles !
 
+Cette version fonctionne avec [MathJax 3](https://www.mathjax.org/).
+
 Elles ont fait l'objet d'une publication dans :
 > V. Mazet, « [Simulations pédagogiques en traitement du signal avec JavaScript](https://icube-publis.unistra.fr/5-Maze17) »,
 > GRETSI 2017 5-8 septembre 2017, Juan-les-Pins, France.
@@ -31,7 +33,7 @@ Ces démonstrations ont été développées par Vincent Mazet et des étudiants 
 
 ## Licence
 
-Copyright Vincent Mazet ([vincent.mazet@unistra.fr](vincent.mazet@unistra.fr)) et co-auteurs, 2014-2017.
+Copyright Vincent Mazet ([vincent.mazet@unistra.fr](vincent.mazet@unistra.fr)) et co-auteurs, 2014-2022.
 
 Les programmes Javascript fournis par l'intermédiaire de ces pages proposent des illustrations et des animations pédagogiques de traitement du signal.
 

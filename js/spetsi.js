@@ -104,11 +104,7 @@ function Label(div, txt, x, y, align, clr)
         o.style.top = y.toString() + 'px';
 
     // Transcription avec MathJax
-    // http://docs.mathjax.org/en/latest/typeset.html
-    // http://docs.mathjax.org/en/latest/api/hub.html
-    console.log(MathJax.Hub)
-    console.log(o)
-    MathJax.Hub.Queue(['Typeset', MathJax.Hub, o]); // MathJax.Hub.Queue(['Typeset',MathJax.Hub,o]);
+    MathJax.typesetPromise();
 
     return o;
 }
