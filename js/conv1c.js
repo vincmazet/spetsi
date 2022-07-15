@@ -37,7 +37,7 @@
 */
 
 // Objets
-var div, g = [], g1, g2, g3, btnclear;
+var div_conv1c, g = [], g1, g2, g3, btnclear;
 
 // Paramètres
 var xmax = 5;       // Valeurs extrême des abscisses
@@ -49,53 +49,56 @@ var d = -4;         // Actuel décalage (en point)
 var dpx, odpx;      // Actuel et ancien décalages (en pixel)
 
 // Taille des graphiques
-var gw = 350;       // Largeur d'un graphe
+var gw_conv1d = 350;       // Largeur d'un graphe
 var gh = 80;        // Hauteur d'un graphe
-var gs = 15;        // Espacement entre les graphes
+var gs_conv1d = 15;        // Espacement entre les graphes
 
 // Abscisse pour le signal z(t) (résultat de la convolution)
-var t = new Array(gw), z = new Array(gw);
-for( i = 0 ; i < gw+1 ; i++ )
-    t[i] = i / gw * 2 * xmax - xmax;
+var t = new Array(gw_conv1d), z = new Array(gw_conv1d);
+for( i = 0 ; i < gw_conv1d+1 ; i++ )
+    t[i] = i / gw_conv1d * 2 * xmax - xmax;
 
 // Initialisation
-function init()
+function init_conv1c()
 {
+
+    console.log("Initialisation conv1c");
+
     // Initialisation du div
-    div = inidiv('conv1c', gw, 5*(gh+gs)+30);
+    div_conv1c = inidiv('conv1c', gw_conv1d, 5*(gh+gs_conv1d)+30);
 
     // Graphes statiques
     for (i=0; i<5; i++)
     {
-      g[i] = Graph(div, 0, i*(gh+gs), gw, gh);
+      g[i] = Graph(div_conv1c, 0, i*(gh+gs_conv1d), gw_conv1d, gh);
       g[i].xlim = [-xmax, xmax];
       g[i].ylim = [-0.1, 1.5];
       g[i].axes(color[2]);
       g[i].box(color[2]);
-      Label(div, i==4 ? '\\(t\\)' : '\\(\\tau\\)', i==4 ? gw+18 : gw+38, i*(gh+gs)+gh+14, 'br', color[2] );
+      Label(div_conv1c, i==4 ? '\\(t\\)' : '\\(\\tau\\)', i==4 ? gw_conv1d+18 : gw_conv1d+38, i*(gh+gs_conv1d)+gh+14, 'br', color[2] );
     }
 
     // Etiquettes des signaux
-    Label(div, '\\(x(\\tau)\\)',           gw/2+2,  0           , 'tl', color[3] );
-    Label(div, '\\(h(\\tau)\\)',           gw/2+2,     gh+gs    , 'tl', color[4] );
-    Label(div, '\\(x(\\tau)\\)',           gw/2+2,  2*(gh+gs)   , 'tl', color[3] );
-    Label(div, '\\(h(t-\\tau)\\)',         gw/2+40, 2*(gh+gs)   , 'tl', color[4] );
-    Label(div, '\\(x(\\tau)h(t-\\tau)\\)', gw/2+2,  3*(gh+gs)   , 'tl', color[5] );
-    Label(div, '\\(y(t)\\)',               gw/2+2,  4*(gh+gs)   , 'tl', color[5] );
+    Label(div_conv1c, '\\(x(\\tau)\\)',           gw_conv1d/2+2,  0           , 'tl', color[3] );
+    Label(div_conv1c, '\\(h(\\tau)\\)',           gw_conv1d/2+2,     gh+gs_conv1d    , 'tl', color[4] );
+    Label(div_conv1c, '\\(x(\\tau)\\)',           gw_conv1d/2+2,  2*(gh+gs_conv1d)   , 'tl', color[3] );
+    Label(div_conv1c, '\\(h(t-\\tau)\\)',         gw_conv1d/2+40, 2*(gh+gs_conv1d)   , 'tl', color[4] );
+    Label(div_conv1c, '\\(x(\\tau)h(t-\\tau)\\)', gw_conv1d/2+2,  3*(gh+gs_conv1d)   , 'tl', color[5] );
+    Label(div_conv1c, '\\(y(t)\\)',               gw_conv1d/2+2,  4*(gh+gs_conv1d)   , 'tl', color[5] );
 
     // Bouton d'effacement
-    btnclear = Button(div, 'Effacer', gw/2-50, 5*(gh+gs), 100, 30, 'Effacer les graphes',
-                      function() {odpx = undefined; z = []; draw();});
+    btnclear = Button(div_conv1c, 'Effacer', gw_conv1d/2-50, 5*(gh+gs_conv1d), 100, 30, 'Effacer les graphes',
+                      function() {odpx = undefined; z = []; draw_conv1d();});
 
     // Graphe h(t-tau)
-    g1 = new Graph(div, 0, 2*(gh+gs), gw, gh);
+    g1 = new Graph(div_conv1c, 0, 2*(gh+gs_conv1d), gw_conv1d, gh);
     g1.xlim = [-xmax, xmax];
     g1.ylim = [-0.1, 1.5];
     g1.lineWidth = 2;
     g1.strokeStyle = color[4];
 
     // Graphe x(tau)h(t-tau)
-    g2 = new Graph(div, 0, 3*(gh+gs), gw, gh);
+    g2 = new Graph(div_conv1c, 0, 3*(gh+gs_conv1d), gw_conv1d, gh);
     g2.xlim = [-xmax, xmax];
     g2.ylim = [-0.1, 1.5];
     g2.lineWidth = 2;
@@ -103,13 +106,12 @@ function init()
     g2.fillStyle = '#5AE063';
 
     // Graphe y(t)
-    g3 = new Graph(div, 0, 4*(gh+gs), gw, gh);
+    g3 = new Graph(div_conv1c, 0, 4*(gh+gs_conv1d), gw_conv1d, gh);
     g3.xlim = [-xmax, xmax];
     g3.ylim = [-0.1, 1.5];
     g3.lineWidth = 2;
     g3.fillStyle = color[5];
     g3.strokeStyle = color[5];
-    console.log('yyy');
 
     // Déplacements avec la souris
     g[0].mouseDrag(deplacement);
@@ -137,7 +139,7 @@ function init()
     g[2].plot([-xmax, -a, -a, a, a, xmax], [0, 0, A, A, 0, 0]);
 
     // Dessin
-    draw();
+    draw_conv1d();
 }
 
 // Déplacement de la souris sur le graphe
@@ -168,7 +170,7 @@ function deplacement(x, tmp)
     for (var k=k1; k<=k2; k++)
     {
         p = g1.px2pt([k, 0]);
-        myd = k / gw * 2 * xmax - xmax;
+        myd = k / gw_conv1d * 2 * xmax - xmax;
         if      (myd+b < -a)
             z[k] = 0;
         else if (myd-b < -a)
@@ -182,10 +184,10 @@ function deplacement(x, tmp)
     }
     
     odpx = dpx;
-    draw();
+    draw_conv1d();
 }
 
-function draw()
+function draw_conv1d()
 {
     // Signal x(tau)h(t-tau) (seulement les 4 points de l'aire)
     var xa = []; ya = [];
@@ -233,7 +235,7 @@ function draw()
     
     // DEBUG : bug dans Safari
     //console.log("d = " + d);
-    //console.log("t[0] = " + t[0] + ",  t[1] = " + t[1] + ",  t[gw] = " + t[gw]);
+    //console.log("t[0] = " + t[0] + ",  t[1] = " + t[1] + ",  t[gw_conv1d] = " + t[gw_conv1d]);
 }
 
-window.onload = function (){ init(); };
+//window.onload = function (){ init_conv1c(); };

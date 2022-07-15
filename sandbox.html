@@ -162,15 +162,41 @@ Dans ce cas, il faut repositionner le Label.
   <code>window.devicePixelRatio = <span id="pixelratio"></span></code>.
 </p>
 
-<div id='sandbox10' class='spetsi'></div>
+</section>
 
-<p id="console10"></p>
+<!-------------------------------------------------------------------->
+
+<section>
+<h3>Afficher deux animations sur la même page</h3>
+
+<p>
+  Pour afficher deux animations sur la même page, il faut veiller à ce que leur code JavaScript soit compatible,
+  notamment que les fonctions d'initialisation (générallement <code>init()</code>) et de dessin (générallement <code>draw()</code>)
+  aient toutes des noms spécifiques.
+  C'est vrai aussi pour les variables.
+</p>
+
+<p>
+  De plus, la fonction <code>window.onload()</code> doit appeler toutes les fonctions d'initialisation.
+  Si la fonction <code>window.onload()</code> est définie dans chaque fichier js, alors il faut la redéfinir après avoir appeler les fichiers js, comme dans l'exemple :
+  
+  <pre>
+  &lt;script src="https://polyfill.io/v3/polyfill.min.js?features=es6"&gt;&lt;/script&gt;
+  &lt;script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"&gt;&lt;/script&gt;
+  &lt;script src="js/spetsi.js" type="text/javascript"&gt;&lt;/script&gt;
+  &lt;script src="js/conv1c.js" type="text/javascript"&gt;&lt;/script&gt;
+  &lt;script src="js/convolution.js" type="text/javascript"&gt;&lt;/script&gt;
+  &lt;script type="text/javascript"&gt;window.onload = function (){ init_conv1c(); init_convolution(); };&lt;/script&gt;
+  </pre>
+
+</p>
 
 </section>
 
 <!-------------------------------------------------------------------->
 
 </section>
+<br /><br />
 <p><a href="index.html#licence">&copy; Vincent Mazet, 2015-2016</a>.</p>
 </section>
 

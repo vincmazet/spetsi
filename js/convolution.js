@@ -38,11 +38,11 @@
 
 
 // Objets
-var div, gxb, ghb, gyb, gxf, ghf, gyf, selx, selh, lblconv, lblequal;
+var div_convolution, gxb, ghb, gyb, gxf, ghf, gyf, selx, selh, lblconv, lblequal;
 
 // Paramètres
-var gw = 230;           // Côté d'un graphe
-var gs = 50;            // Séparation entre graphes
+var gw_convolution = 230;           // Côté d'un graphe
+var gs_convolution = 50;            // Séparation entre graphes
 
 // Signaux pré-enregistrés
 var signals = ['Signal nul', 'Kronecker', 'Porte', 'Gaussienne', 'Exponentielle décroissante', 'Rampe', 'Personnalisé'];
@@ -56,44 +56,47 @@ var n = range(-(N-1)/2, (N-1)/2);
 var x = Array(N), h = Array(N), y = Array(N);
 
 // Initialisation
-function init()
+function init_convolution()
 {
-    // Initialisation du div
-    div = inidiv('convolution', 3*gw+2*gs, gw+70);
+
+    console.log("Initialisation init_convolution");
+    
+    // Initialisation du div_convolution
+    div_convolution = inidiv('convolution', 3*gw_convolution+2*gs_convolution, gw_convolution+70);
 
     // Signes
-    lblconv = Label(div, '\\(*\\)', 258, 130, 'cm', color[0]);
+    lblconv = Label(div_convolution, '\\(*\\)', 258, 130, 'cm', color[0]);
     lblconv.style.fontSize = '250%';
-    lblequal = Label(div, '\\(=\\)', 532, 130, 'cm', color[0]);
+    lblequal = Label(div_convolution, '\\(=\\)', 532, 130, 'cm', color[0]);
     lblequal.style.fontSize = '250%';
 
     // Listes de choix
-    selx = Select(div, 0,     gw+40, gw, signals, signalX);
-    selh = Select(div, gw+gs, gw+40, gw, signals, signalY);
+    selx = Select(div_convolution, 0,     gw_convolution+40, gw_convolution, signals, signalX);
+    selh = Select(div_convolution, gw_convolution+gs_convolution, gw_convolution+40, gw_convolution, signals, signalY);
     
     // Graphes d'arrière-plan
-    gxb = Graph(div, 0,         30, gw, gw); gxb.xlim = [-gmax, gmax]; gxb.ylim = [-gmax, gmax]; gxb.grid(1, 1, color[2]);
-    ghb = Graph(div, gw+gs,     30, gw, gw); ghb.xlim = [-gmax, gmax]; ghb.ylim = [-gmax, gmax]; ghb.grid(1, 1, color[2]);
-    gyb = Graph(div, 2*(gw+gs), 30, gw, gw); gyb.xlim = [-gmax, gmax]; gyb.ylim = [-gmax, gmax]; gyb.grid(1, 1, color[2]);
+    gxb = Graph(div_convolution, 0,         30, gw_convolution, gw_convolution); gxb.xlim = [-gmax, gmax]; gxb.ylim = [-gmax, gmax]; gxb.grid(1, 1, color[2]);
+    ghb = Graph(div_convolution, gw_convolution+gs_convolution,     30, gw_convolution, gw_convolution); ghb.xlim = [-gmax, gmax]; ghb.ylim = [-gmax, gmax]; ghb.grid(1, 1, color[2]);
+    gyb = Graph(div_convolution, 2*(gw_convolution+gs_convolution), 30, gw_convolution, gw_convolution); gyb.xlim = [-gmax, gmax]; gyb.ylim = [-gmax, gmax]; gyb.grid(1, 1, color[2]);
     
     // Graphes d'avant-plan
-    gxf = Graph(div, 0,         30, gw, gw); gxf.xlim = [-gmax, gmax]; gxf.ylim = [-gmax, gmax];
-    ghf = Graph(div, gw+gs,     30, gw, gw); ghf.xlim = [-gmax, gmax]; ghf.ylim = [-gmax, gmax];
-    gyf = Graph(div, 2*(gw+gs), 30, gw, gw); gyf.xlim = [-gmax, gmax]; gyf.ylim = [-gmax, gmax];
+    gxf = Graph(div_convolution, 0,         30, gw_convolution, gw_convolution); gxf.xlim = [-gmax, gmax]; gxf.ylim = [-gmax, gmax];
+    ghf = Graph(div_convolution, gw_convolution+gs_convolution,     30, gw_convolution, gw_convolution); ghf.xlim = [-gmax, gmax]; ghf.ylim = [-gmax, gmax];
+    gyf = Graph(div_convolution, 2*(gw_convolution+gs_convolution), 30, gw_convolution, gw_convolution); gyf.xlim = [-gmax, gmax]; gyf.ylim = [-gmax, gmax];
     
     // Évènements sur les graphes
     gxf.mouseDrag(moveX);
     ghf.mouseDrag(moveH);
 
     // Etiquettes
-    Label(div, '\\(x[n]\\)', 125, 0, 'ct', color[0]);
-    Label(div, '\\(h[n]\\)', 405, 0, 'ct', color[0]);
-    Label(div, '\\(y[n]\\)', 685, 0, 'ct', color[0]);
+    Label(div_convolution, '\\(x[n]\\)', 125, 0, 'ct', color[0]);
+    Label(div_convolution, '\\(h[n]\\)', 405, 0, 'ct', color[0]);
+    Label(div_convolution, '\\(y[n]\\)', 685, 0, 'ct', color[0]);
 
     // Affiche les signaux
     signalX();
     signalY();
-    draw();
+    draw_convolution();
 }
 
 // Déplacement de la souris sur le graphe X
@@ -105,7 +108,7 @@ function moveX(xx, yy)
     x[xx+(N-1)/2] = yy;
     gxf.clear();
     gxf.stem(n,x);
-    draw();
+    draw_convolution();
 }
 
 // Déplacement de la souris sur le Y
@@ -117,7 +120,7 @@ function moveH(xx, yy)
     h[xx+(N-1)/2] = yy;
     ghf.clear();
     ghf.stem(n,h);
-    draw();
+    draw_convolution();
 }
 
 // Changement dans la sélection de x
@@ -126,7 +129,7 @@ function signalX()
     x = initsignal(selx.value);
     gxf.clear();
     gxf.stem(n,x);
-    draw();
+    draw_convolution();
 }
 
 // Changement dans la sélection de y
@@ -135,10 +138,10 @@ function signalY()
     h = initsignal(selh.value);
     ghf.clear();
     ghf.stem(n,h);
-    draw();
+    draw_convolution();
 }
 
-function draw()
+function draw_convolution()
 {
     // Produit de convolution
     y = conv(x, h);
@@ -212,4 +215,4 @@ function initsignal(s)
     return x;
 }
 
-window.onload = function (){ init(); };
+window.onload = function (){ init_convolution(); };
