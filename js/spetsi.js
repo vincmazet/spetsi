@@ -106,7 +106,7 @@ function Label(div, txt, x, y, align, clr)
     // Transcription avec MathJax
     // http://docs.mathjax.org/en/latest/typeset.html
     // http://docs.mathjax.org/en/latest/api/hub.html
-    MathJax.Hub.Queue(['Typeset', o]); // MathJax.Hub.Queue(['Typeset',MathJax.Hub,o]);
+    MathJax.Hub.Queue(['Typeset', MathJax.Hub]); // MathJax.Hub.Queue(['Typeset',MathJax.Hub,o]);
 
     return o;
 }
