@@ -3,7 +3,7 @@
 
     Version du 16/09/2016
 
-    Copyright Vincent Mazet (vincent.mazet@unistra.fr) 2016-2022
+    Copyright Vincent Mazet (vincent.mazet@unistra.fr) 2016
 
     Les programmes Javascript fournis par l'intermédiaire de ces pages
     proposent des illustrations et des animations pédagogiques pour le
@@ -36,6 +36,7 @@
     connaissance de la licence CeCILL-B, et que vous en avez accepté les termes.
 */
 
+
 // Objets
 var div;
 var lblf, sldf;
@@ -52,20 +53,21 @@ var nmin = -2, nmax = 12, nstep = .02;      // Abscisses pour l'exponentielle co
 n = range(nmin, nmax, nstep);
 var x0=-2, y0=-2, z0=-2;                    // Origine du volume 3D
 
-// Initialisation
+
 function init()
 {
     // Initialisation du div
     div = inidiv('expo', 30*w, 30*h+50);
-    div.style.backgroundColor = '#ffffff';
+    div.style.backgroundColor = '#ff0000';
     
-    // Labels
-    Label(div, '\\(t\\)', 185, 125, 'br', color[3]);
+    
+    Label(div, '\\(x[n]\\)', 125, 0, 'ct', color[0]);
+/*    Label(div, '\\(t\\)', 185, 125, 'br', color[3]);
     Label(div, '\\(Re[x(t)]\\)', 125, 55, 'bc', color[3]);
-    Label(div, '\\(Im[x(t)]\\)', 90, 125, 'br', color[3]);
+    Label(div, '\\(Im[x(t)]\\)', 90, 125, 'br', color[3]);*/
     
     // Slider et étiquette "Fréquence"
-    lblf = Label(div, 'Fréquence : X', 0, 30*h+20);
+//    lblf = Label(div, 'Fréquence : X', 0, 30*h+20);
     sldf = Slider(div, 120, 30*h+20, 30*w-120, fmin, fmax, f, fstep, draw);
 
     // Scène 3D (three.js)
@@ -76,6 +78,7 @@ function init()
     camera.position.set( 10, 3, 8 );
     camera.lookAt(new THREE.Vector3(3.5,0,0));
     scene.add( camera );
+    
     
     // Exponentielle complexe
     material = new THREE.LineBasicMaterial({
@@ -197,16 +200,17 @@ function init()
     renderer.setSize(30*w, 30*h);
     div.appendChild( renderer.domElement );
     
+    
     draw();
 }
 
 function draw()
-{
+{    
     // Récupère les valeurs des sliders
     f = parseFloat(sldf.value);
 
     // Étiquettes de valeur
-    lblf.innerHTML = 'Fréquence : ' + f.toString();
+//    lblf.innerHTML = 'Fréquence : ' + f.toString();
 
     // Met à jour l'exponentielle complexe
     expgeo.verticesNeedUpdate = true;
@@ -239,6 +243,7 @@ function draw()
 
     // Rendu
     renderer.render( scene, camera );
+
 }
 
-window.onload = function (){ init(); };
+init();

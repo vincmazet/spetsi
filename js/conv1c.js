@@ -238,4 +238,4 @@ function draw_conv1d()
     //console.log("t[0] = " + t[0] + ",  t[1] = " + t[1] + ",  t[gw_conv1d] = " + t[gw_conv1d]);
 }
 
-//window.onload = function (){ init_conv1c(); };
+window.onload = function (){ init_conv1c(); };
