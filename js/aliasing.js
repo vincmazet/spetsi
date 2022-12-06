@@ -1,7 +1,7 @@
 /*
     REPLIEMENT SPECTRAL
 
-    Version du 24/09/2018
+    Version du 06/12/2022
 
     Copyright Vincent Mazet (vincent.mazet@unistra.fr), Mehdi Abouhaouari, Shridevi Sandiramourty, 2016.
 
@@ -56,6 +56,10 @@ var Te = 0.05;              // Pas d'échantillonnage
 var xstep = 0.03;           // Pas d'échantillonnage de la sinusoïde "continue"
 var fo = 1;                 // Fréquence de la sinusoïde
 var A = 1;                  // Amplitude de la sinusoïde
+
+// Couleurs qui vont bien par rapport au cours
+var color = [ color[0], color[1], color[2], '#ff7f0e', '#2ca02c', '#1f77b4' ];
+
 for(n = -xtmax; n < xtmax; n=n+xstep )
 {
     t.push( n );
@@ -80,7 +84,7 @@ function init()
 
     // Signal original
     gtb.lineWidth = 1;
-    gtb.strokeStyle = color[0];
+    gtb.strokeStyle = color[5];
     gtb.plot(t,y);
 
     // Avant-plan
@@ -94,7 +98,7 @@ function init()
 
     // Graphes fréquentiels et étiquettes
 
-    // Complètemet à l'arrière-plan : zones d'exclusion en dehors de [-fe/2, fe/2]
+    // Complètement à l'arrière-plan : zones d'exclusion en dehors de [-fe/2, fe/2]
     gfe = Graph(div, gw+sep, 0, gw, gh);
     gfe.xlim = [-xfmax, xfmax];
     gfe.ylim = [-yfmax, yfmax];
