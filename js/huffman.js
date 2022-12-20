@@ -195,8 +195,8 @@ function coding(tab)
         code.push( code[j-1] );
 
         // Ajout d'un 0 à l'avant dernier code et d'un 1 au dernier
-        code[j-1] += '0';
-        code[j]   += '1';
+        code[j-1] += '1';
+        code[j]   += '0';
 
         // Tri les codes en fonction de la dernière fusion
         // si un code est une fusion alors on le duppliquera
@@ -309,7 +309,7 @@ function updateGUI(h)
         lblc[m].style.top = pos.toString() + 'px';
 
         // Symboles
-        lbls.push( Label(div, '\\(S_{' + (m+1) + '}\\)', cW, 0) );
+        lbls.push( Label(div, '\\(s_{' + (m+1) + '}\\)', cW, 0) );
         pos = (H-lbls[m].offsetHeight) / 2 + bdh*3/2 + 2*sep + m*H;
         lbls[m].style.top = pos.toString() + 'px';
 
@@ -367,8 +367,8 @@ function draw(h)
         ctx.stroke();
 
         // Valeur des bits
-        ctx.fillText('1', (i+.65)*W, (j+1.3)*H);
-        ctx.fillText('0', (i+.65)*W, (j+.8)*H);
+        ctx.fillText('0', (i+.65)*W, (j+1.3)*H);
+        ctx.fillText('1', (i+.65)*W, (j+.8)*H);
 
         // Probabilité issue de la fusion
         ctx.fillText(h[i].prob[h[i].prob.length-1], (i+.85)*W, (j+.9)*H);
