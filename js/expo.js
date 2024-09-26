@@ -1,7 +1,7 @@
 /*
     REPRÉSENTATION D'UNE EXPONENTIELLE COMPLEXE
 
-    Version du 16/09/2016
+    Version du 26/09/2024
 
     Copyright Vincent Mazet (vincent.mazet@unistra.fr) 2016-2022
 
@@ -65,8 +65,8 @@ function init()
     Label(div, '\\(Im[x(t)]\\)', 90, 125, 'br', color[3]);
     
     // Slider et étiquette "Fréquence"
-    lblf = Label(div, 'Fréquence : X', 0, 30*h+20);
-    sldf = Slider(div, 120, 30*h+20, 30*w-120, fmin, fmax, f, fstep, draw);
+    lblf = Label(div, 'Fréquence : X', 0, 30*h+15, 't');
+    sldf = Slider(div, 130, 30*h+20, 30*w-130, fmin, fmax, f, fstep, draw);
 
     // Scène 3D (three.js)
     scene = new THREE.Scene();
@@ -241,4 +241,4 @@ function draw()
     renderer.render( scene, camera );
 }
 
-window.onload = function (){ init(); };
+window.onload = function (){ init(); }

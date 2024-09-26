@@ -57,6 +57,7 @@ function inidiv(id, w, h)
     //o.style.background = '#eee';
     o.style.width  = w.toString() + 'px';
     o.style.height = h.toString() + 'px';
+    o.style.position = 'relative';
     return o;
 }
 
@@ -78,7 +79,7 @@ function Label(div, txt, x, y, align, clr)
     var o = document.createElement('div');
 
     // Couleur + position
-    o.style.position = 'relative';
+    o.style.position = 'absolute';
     o.style.color = clr;
 
     // Texte (prévoit un éventuel code LaTeX)
@@ -119,13 +120,13 @@ function Slider(div, x, y, w, min, max, value, step, f)
     //         Alignement horizontal (l, c, r) ou vertical (t, m, b)
     // clr :   couleur du texte (color[0] par défaut)
     // f :     fonction à appeler lors d'un changement de valeur de la barre
-
+    
     // Création du contrôle
     var o = document.createElement('input');
     o.type = 'range';
 
     // Position
-    o.style.position = 'relative';
+    o.style.position = 'absolute';
     o.style.left  = x.toString() + 'px';
     o.style.top   = y.toString() + 'px';
     o.style.width = w.toString() + 'px';
@@ -141,6 +142,7 @@ function Slider(div, x, y, w, min, max, value, step, f)
     o.addEventListener("input",  function() {f();}, false); // pour Firefox, Safari et Chrome
 
     div.appendChild(o);
+    
     return o;
 }
 
@@ -155,7 +157,7 @@ function Select(div, x, y, w, list, f)
 
     // Crée l'objet et le positionne
     var o = document.createElement('select');
-    o.style.position = 'relative';
+    o.style.position = 'absolute';
     o.style.left = x.toString() + 'px';
     o.style.top  = y.toString() + 'px';
     o.style.width= w.toString() + 'px';
@@ -191,7 +193,7 @@ function Button(div, txt, x, y, w, h, tip, f)
 
     // Crée l'objet et le positionne
     var o = document.createElement('button');
-    o.style.position = 'relative';
+    o.style.position = 'absolute';
     o.style.left   = x.toString() + 'px';
     o.style.top    = y.toString() + 'px';
     o.style.width  = w.toString() + 'px';
@@ -221,7 +223,7 @@ function Edit(div, txt, x, y, w, h)
 
     var o = document.createElement('input');
     o.type = 'text';
-    o.style.position = 'relative';
+    o.style.position = 'absolute';
     o.style.left   = x.toString() + 'px';
     o.style.top    = y.toString() + 'px';
     o.style.width  = w.toString() + 'px';
@@ -247,7 +249,7 @@ function Graph(div, x, y, w, h)
     var ctx = cnv.getContext('2d');
 
     // Position et taille
-    cnv.style.position = 'relative';
+    cnv.style.position = 'absolute';
     cnv.style.left   = x.toString() + 'px';
     cnv.style.top    = y.toString() + 'px';
     cnv.style.width  = w.toString() + 'px';
