@@ -58,6 +58,7 @@ function inidiv(id, w, h)
     o.style.width  = w.toString() + 'px';
     o.style.height = h.toString() + 'px';
     o.style.position = 'relative';
+    o.style.margin = "auto";
     return o;
 }
 
