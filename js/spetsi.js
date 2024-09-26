@@ -2,9 +2,9 @@
     SPETSI.JS
     Simulations pédagogiques en traitement du signal et des images
 
-    Version du 04/03/2022
+    Version du 26/09/2024
 
-    Copyright Vincent Mazet (vincent.mazet@unistra.fr) et co-auteurs, 2015-2017.
+    Copyright Vincent Mazet (vincent.mazet@unistra.fr) et co-auteurs, 2015-2024.
 
     Les programmes Javascript fournis par l'intermédiaire de ces pages
     proposent des illustrations et des animations pédagogiques pour le
@@ -78,7 +78,7 @@ function Label(div, txt, x, y, align, clr)
     var o = document.createElement('div');
 
     // Couleur + position
-    o.style.position = 'absolute';
+    o.style.position = 'relative';
     o.style.color = clr;
 
     // Texte (prévoit un éventuel code LaTeX)
@@ -125,7 +125,7 @@ function Slider(div, x, y, w, min, max, value, step, f)
     o.type = 'range';
 
     // Position
-    o.style.position = 'absolute';
+    o.style.position = 'relative';
     o.style.left  = x.toString() + 'px';
     o.style.top   = y.toString() + 'px';
     o.style.width = w.toString() + 'px';
@@ -155,7 +155,7 @@ function Select(div, x, y, w, list, f)
 
     // Crée l'objet et le positionne
     var o = document.createElement('select');
-    o.style.position = 'absolute';
+    o.style.position = 'relative';
     o.style.left = x.toString() + 'px';
     o.style.top  = y.toString() + 'px';
     o.style.width= w.toString() + 'px';
@@ -191,7 +191,7 @@ function Button(div, txt, x, y, w, h, tip, f)
 
     // Crée l'objet et le positionne
     var o = document.createElement('button');
-    o.style.position = 'absolute';
+    o.style.position = 'relative';
     o.style.left   = x.toString() + 'px';
     o.style.top    = y.toString() + 'px';
     o.style.width  = w.toString() + 'px';
@@ -221,7 +221,7 @@ function Edit(div, txt, x, y, w, h)
 
     var o = document.createElement('input');
     o.type = 'text';
-    o.style.position = 'absolute';
+    o.style.position = 'relative';
     o.style.left   = x.toString() + 'px';
     o.style.top    = y.toString() + 'px';
     o.style.width  = w.toString() + 'px';
@@ -247,7 +247,7 @@ function Graph(div, x, y, w, h)
     var ctx = cnv.getContext('2d');
 
     // Position et taille
-    cnv.style.position = 'absolute';
+    cnv.style.position = 'relative';
     cnv.style.left   = x.toString() + 'px';
     cnv.style.top    = y.toString() + 'px';
     cnv.style.width  = w.toString() + 'px';
