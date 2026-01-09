@@ -16,7 +16,7 @@ Elles ont fait l'objet d'une publication dans :
 > V. Mazet, « [Simulations pédagogiques en traitement du signal avec JavaScript](https://icube-publis.unistra.fr/5-Maze17) »,
 > GRETSI 2017 5-8 septembre 2017, Juan-les-Pins, France.
 
-✨ Les animations sont également disponibles seules (sans texte ou contenu en dehors de l'animation elle-même) : [](https://github.com/vincmazet/spetsi/tree/main/standalone) !
+✨ Les animations sont également disponibles seules (sans texte ou contenu en dehors de l'animation elle-même) : [standalone](https://github.com/vincmazet/spetsi/tree/main/standalone) !
 
 
 ## Aide
