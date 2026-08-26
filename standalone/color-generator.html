@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Color generator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="vincent mazet, telecom physique strasbourg" />
+
+  <style>
+    input { width:200px; }
+    .box { margin:10px; }
+    .label { display: inline-block; width:30px; }
+    .code { margin: 5px 0; }
+    #droplet {width: 100px; height: 100px; border: 1px solid black;}
+    #color-generator {
+      display: flex;
+      justify-content: center;
+      align-items: top;
+    }
+    @media (max-width: 700px) {
+      #color-generator {
+        flex-direction:column;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+<div id="color-generator">
+  <div class="box" id="droplet">
+  </div>
+  <div class="box">
+    <span class="label">R:</span><input type="range" min="0" max="255" value="0" id="RSliderx"><br>
+    <span class="label">G:</span><input type="range" min="0" max="255" value="0" id="GSliderx"><br>
+    <span class="label">B:</span><input type="range" min="0" max="255" value="0" id="BSliderx"><br>
+    <p id="rgb-code" class="code"></p>
+  </div>
+  <div class="box">
+    <span class="label">H:</span><input type="range" min="0" max="359" value="0" id="HSliderx"><br>
+    <span class="label">S:</span><input type="range" min="0" max="100" value="0" id="SSliderx"><br>
+    <span class="label">V:</span><input type="range" min="0" max="100" value="0" id="VSliderx"><br>
+    <p id="hsv-code" class="code"></p>
+  </div>
+</div>
+
+<script>
+
+    const RSlider = document.getElementById('RSliderx');
+    const GSlider = document.getElementById('GSliderx');
+    const BSlider = document.getElementById('BSliderx');
+    const RGBCode = document.getElementById('rgb-code');
+    const HSlider = document.getElementById('HSliderx');
+    const SSlider = document.getElementById('SSliderx');
+    const VSlider = document.getElementById('VSliderx');
+    const HSVCode = document.getElementById('hsv-code');
+    const Droplet = document.getElementById('droplet');
+
+    function update(R, G, B, H, S, V)
+    {
+      // Update controls
+
+      // Convert to int
+      R = parseInt(R);
+      G = parseInt(G);
+      B = parseInt(B);
+      H = parseInt(H);
+      S = parseInt(S);
+      V = parseInt(V);
+
+      // Droplet color
+      Droplet.style.backgroundColor = `rgb(${R}, ${G}, ${B})`;
+
+      // Codes
+      RGBCode.innerText = `RGB = (${R}, ${G}, ${B})`;
+      HSVCode.innerText = `HSV = (${H}, ${S}, ${V})`;
+    }
+
+    function updateRGBColor()
+    {
+      // Convert color (RGB -> HSV and update controls
+
+      // Read sliders
+      const R = parseInt(RSlider.value);
+      const G = parseInt(GSlider.value);
+      const B = parseInt(BSlider.value);
+
+      // Conversion
+      const [H, S, V] = rgb2hsv(R, G, B);
+
+      // Update HSV sliders
+      HSlider.value = H;
+      SSlider.value = S;
+      VSlider.value = V;
+
+      // Update controls
+      update(R, G, B, H, S, V);
+    }
+
+    function updateHSVColor()
+    {
+      // Convert color (HSV -> RGB and update controls
+
+      // Read sliders
+      const H = parseInt(HSlider.value);
+      const S = parseInt(SSlider.value);
+      const V = parseInt(VSlider.value);
+
+      // Conversion
+      const [R, G, B] = hsv2rgb(H, S, V);
+
+      // Update HSV sliders
+      RSlider.value = R;
+      GSlider.value = G;
+      BSlider.value = B;
+
+      // Update controls
+      update(R, G, B, H, S, V);
+    }
+
+    function rgb2hsv(R, G, B)
+    {
+      // RGB to HSV
+      // Source : https://github.com/scikit-image/scikit-image/blob/v0.22.0/skimage/color/colorconv.py#L242-L329
+
+      let r = R/255;
+      let g = G/255;
+      let b = B/255;
+
+      let v = Math.max(r,g,b);
+
+      let delta = Math.max(r,g,b) - Math.min(r,g,b);
+
+      let s;
+      if (v==0) {
+        s = 0;
+      } else {
+        s = delta/v;
+      }
+
+      let  h;
+      if (r == v) { h = 60 * (g - b) / delta; console.log(1); }
+      if (g == v) { h = 60 * (b - r) / delta + 120; console.log(2); }
+      if (b == v) { h = 60 * (r - g) / delta + 240; console.log(3); }
+      if (delta == 0) { h = 0; }
+      h = (360+h) % 360;
+
+      return [h, s*100, v*100];
+    }
+
+    function hsv2rgb(H, S, V)
+    {
+      // HSV to RGB
+      // Source : https://github.com/scikit-image/scikit-image/blob/v0.22.0/skimage/color/colorconv.py#L332-L392
+
+      let s = S / 100;
+      let v = V / 100;
+      let hi = Math.floor(H/60);
+      let f = H/60 - hi;
+      let p = v * (1 - s);
+      let q = v * (1 - f * s);
+      let t = v * (1 - (1 - f) * s);
+
+      let r, g, b;
+      if ((0<=hi) && (hi<1)) {r = v; g = t; b = p; }
+      if ((1<=hi) && (hi<2)) {r = q; g = v; b = p; }
+      if ((2<=hi) && (hi<3)) {r = p; g = v; b = t; }
+      if ((3<=hi) && (hi<4)) {r = p; g = q; b = v; }
+      if ((4<=hi) && (hi<5)) {r = t; g = p; b = v; }
+      if ((5<=hi) && (hi<6)) {r = v; g = p; b = q; }
+
+      return [r*255, g*255, b*255];
+    }
+
+    // Events on sliders
+    RSlider.addEventListener('input', updateRGBColor);
+    GSlider.addEventListener('input', updateRGBColor);
+    BSlider.addEventListener('input', updateRGBColor);
+    HSlider.addEventListener('input', updateHSVColor);
+    SSlider.addEventListener('input', updateHSVColor);
+    VSlider.addEventListener('input', updateHSVColor);
+
+    // Initial update
+    updateRGBColor();
+
+  </script>
+
+</body>
+</html>
